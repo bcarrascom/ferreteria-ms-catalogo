@@ -11,8 +11,8 @@
 	<groupId>cl.duoc.ferreteria</groupId>
 	<artifactId>ms-catalogo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>ms-catalogo</name>
+	<description>Catálogo de productos y categorías - Ferretería Los Maestros</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -28,12 +28,10 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<springdoc.version>3.2.0</springdoc.version>
+		<jjwt.version>0.12.6</jjwt.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-h2console</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -51,10 +49,36 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
+		<!-- Swagger UI y documento OpenAPI (springdoc 3.2.0 está compilado contra Spring Boot 4.1.2) -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+
+		<!-- JWT: la API se usa al compilar; la implementación y el lector de JSON solo al ejecutar -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>

@@ -17,8 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * Prueba la cadena de seguridad completa (filtro JWT + reglas por rol + JSON de error).
- * Todavía no hay controllers: una ruta permitida sin controller responde 404, y eso
- * demuestra que la petición pasó la seguridad.
+ * Una respuesta distinta de 401/403 demuestra que la petición pasó la seguridad.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -38,9 +37,7 @@ class SeguridadBaseTest {
     @Test
     void getPublicoSinTokenPasaLaSeguridad() throws Exception {
         mvc.perform(get(PRODUCTOS))
-                .andExpect(status().isNotFound())                  // pasó la seguridad; aún no hay controller
-                .andExpect(jsonPath("$.status").value(404))
-                .andExpect(jsonPath("$.ruta").value(PRODUCTOS));
+                .andExpect(status().isOk());
     }
 
     @Test

@@ -1,0 +1,24 @@
+# El COPY . . del Dockerfile no debe meter secretos, el build local ni carpetas ajenas en la imagen
+
+# Build local (la imagen compila desde cero)
+target/
+
+# Secretos (docker compose los pasa como variables de entorno)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+
+# Git e IDEs
+.git/
+.idea/
+.vscode/
+*.iml
+
+# Solo locales: no son parte del servicio
+ferreteria-los-maestros/
+especificaciones/
+CLAUDE.md
+HELP.md

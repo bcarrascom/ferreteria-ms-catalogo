@@ -38,7 +38,10 @@ public class CategoriaController {
     }
 
     @Operation(summary = "Lista las categorías", description = "Ordenadas por id, con la cantidad de productos de cada una.")
-    @ApiResponse(responseCode = "200", description = "Lista de categorías")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de categorías"),
+            @ApiResponse(responseCode = "401", description = "Se envió un token inválido o expirado", content = @Content(schema = @Schema(implementation = ErrorRespuesta.class)))
+    })
     @GetMapping
     public List<CategoriaRespuesta> listar() {
         return categoriaService.listar();
@@ -48,6 +51,7 @@ public class CategoriaController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Categoría encontrada"),
             @ApiResponse(responseCode = "400", description = "El id no es un número", content = @Content(schema = @Schema(implementation = ErrorRespuesta.class))),
+            @ApiResponse(responseCode = "401", description = "Se envió un token inválido o expirado", content = @Content(schema = @Schema(implementation = ErrorRespuesta.class))),
             @ApiResponse(responseCode = "404", description = "No existe la categoría", content = @Content(schema = @Schema(implementation = ErrorRespuesta.class)))
     })
     @GetMapping("/{id}")
